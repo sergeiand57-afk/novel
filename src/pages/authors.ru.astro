@@ -1,0 +1,36 @@
+---
+const t = {
+  heading:'Об авторах',
+  backBtn:'Назад',
+  footer:'© 2025 Предел петляной вечности',
+  authors:[
+    {label:'Идея', value:'Colubmina'},
+    {label:'Программист', value:'Ravix'},
+    {label:'Сюжет', value:'Colubmina'},
+    {label:'Персонажи', value:'Colubmina'}
+  ]
+};
+---
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{t.heading}</title>
+<style>
+body {margin:0;font-family:'EB Garamond', serif;background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:#fff;padding:40px 20px;text-align:center;}
+h1 {font-size:3rem;margin-bottom:40px;}
+.card {background: rgba(255,255,255,0.05);border-radius:20px;padding:20px 30px;margin:15px 0;max-width:500px;margin:auto;}
+.label {font-weight:bold;color:#ff6a00;} .value {margin-left:10px;}
+.back-btn {display:inline-block;margin-top:40px;padding:12px 28px;color:#fff;background: linear-gradient(135deg, rgba(255,106,0,0.8), rgba(255,140,66,0.8));border-radius:20px;text-decoration:none;}
+.back-btn:hover {background: linear-gradient(135deg, rgba(255,140,66,0.9), rgba(255,180,80,0.9));}
+footer {margin-top:40px;font-size:0.9rem;color:rgba(255,255,255,0.6);}
+</style>
+</head>
+<body>
+<h1>{t.heading}</h1>
+{t.authors.map(a => <div class="card"><span class="label">{a.label}:</span> <span class="value">{a.value}</span></div>)}
+<a class="back-btn" href="/index.ru.astro">{t.backBtn}</a>
+<footer>{t.footer}</footer>
+</body>
+</html>
