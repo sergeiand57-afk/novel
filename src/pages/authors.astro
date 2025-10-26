@@ -1,1 +1,76 @@
+---
+const lang = Astro.url.searchParams.get('lang') || 'ru'
+
+const texts = {
+  ru: {
+    authorsHeading: 'Об авторах',
+    backBtn: 'Назад',
+    footer: '© 2025 Предел Петляной Вечности',
+    authorsText: [
+      { label: 'Идея', value: 'Colubmina' },
+      { label: 'Программист', value: 'Ravix' },
+      { label: 'Сюжет', value: 'Colubmina' },
+      { label: 'Персонажи', value: 'Colubmina' }
+    ]
+  },
+  en: {
+    authorsHeading: 'About Authors',
+    backBtn: 'Back',
+    footer: '© 2025 Pledge of the Eternal Loop',
+    authorsText: [
+      { label: 'Idea', value: 'Colubmina' },
+      { label: 'Programmer', value: 'Ravix' },
+      { label: 'Plot', value: 'Colubmina' },
+      { label: 'Characters', value: 'Colubmina' }
+    ]
+  },
+  uk: {
+    authorsHeading: 'Про авторів',
+    backBtn: 'Назад',
+    footer: '© 2025 Предел Петляної Вічності',
+    authorsText: [
+      { label: 'Ідея', value: 'Colubmina' },
+      { label: 'Програміст', value: 'Ravix' },
+      { label: 'Сюжет', value: 'Colubmina' },
+      { label: 'Персонажі', value: 'Colubmina' }
+    ]
+  },
+  pl: {
+    authorsHeading: 'O autorach',
+    backBtn: 'Powrót',
+    footer: '© 2025 Próg Wiecznej Pętli',
+    authorsText: [
+      { label: 'Pomysł', value: 'Colubmina' },
+      { label: 'Programista', value: 'Ravix' },
+      { label: 'Fabuła', value: 'Colubmina' },
+      { label: 'Postacie', value: 'Colubmina' }
+    ]
+  }
+}
+
+const t = texts[lang]
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.authorsHeading}</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>{t.authorsHeading}</h1>
+
+    {t.authorsText.map((item, index) => (
+      <div class="card" style={`animation-delay:${0.2 * index}s`}>
+        <span class="label">{item.label}:</span>
+        <span class="value">{item.value}</span>
+      </div>
+    ))}
+
+    <a class="back-btn" href="/?lang={lang}">{t.backBtn}</a>
+
+    <footer>{t.footer}</footer>
+  </body>
+</html>
 
