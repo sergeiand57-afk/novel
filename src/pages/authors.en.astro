@@ -1,0 +1,35 @@
+---
+const t = {
+  authorsHeading: 'About Authors',
+  backBtn: 'Back',
+  footer: '© 2025 Pledge of the Eternal Loop',
+  authorsText: [
+    { label: 'Idea', value: 'Colubmina' },
+    { label: 'Programmer', value: 'Ravix' },
+    { label: 'Plot', value: 'Colubmina' },
+    { label: 'Characters', value: 'Colubmina' }
+  ]
+};
+---
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{t.authorsHeading}</title>
+<style>
+/* стили такие же как в украинской версии */
+</style>
+</head>
+<body>
+<h1>{t.authorsHeading}</h1>
+{t.authorsText.map((item, index) => (
+  <div class="card" style={`animation-delay:${0.2*index}s`}>
+    <span class="label">{item.label}:</span>
+    <span class="value">{item.value}</span>
+  </div>
+))}
+<a class="back-btn" href="/index.en.astro">{t.backBtn}</a>
+<footer>{t.footer}</footer>
+</body>
+</html>
