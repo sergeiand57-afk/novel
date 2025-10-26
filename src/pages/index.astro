@@ -1,0 +1,95 @@
+---
+const lang = Astro.url.searchParams.get('lang') || 'ru'
+
+const texts = {
+  ru: {
+    title: 'Предел Петляной Вечности',
+    mainHeading: 'Новелла "Предел Петляной Вечности"',
+    mainText: 'Погрузись в увлекательную историю, где время и события переплетаются.',
+    authorsHeading: 'Об авторах',
+    downloadBtn: 'Скачать',
+    platformAndroid: 'Андроид',
+    platformMac: 'Mac',
+    platformWin: 'Windows',
+    footer: '© 2025 Предел Петляной Вечности'
+  },
+  en: {
+    title: 'Pledge of the Eternal Loop',
+    mainHeading: 'Novel "Pledge of the Eternal Loop"',
+    mainText: 'Dive into an exciting story where time and events intertwine.',
+    authorsHeading: 'About Authors',
+    downloadBtn: 'Download',
+    platformAndroid: 'Android',
+    platformMac: 'Mac',
+    platformWin: 'Windows',
+    footer: '© 2025 Pledge of the Eternal Loop'
+  },
+  uk: {
+    title: 'Предел Петляної Вічності',
+    mainHeading: 'Новела "Предел Петляної Вічності"',
+    mainText: 'Поринь у захопливу історію, де час і події переплітаються.',
+    authorsHeading: 'Про авторів',
+    downloadBtn: 'Скачати',
+    platformAndroid: 'Андроїд',
+    platformMac: 'Mac',
+    platformWin: 'Windows',
+    footer: '© 2025 Предел Петляної Вічності'
+  },
+  pl: {
+    title: 'Próg Wiecznej Pętli',
+    mainHeading: 'Nowela "Próg Wiecznej Pętli"',
+    mainText: 'Zanurz się w fascynującą historię, w której czas i wydarzenia się splatają.',
+    authorsHeading: 'O autorach',
+    downloadBtn: 'Pobierz',
+    platformAndroid: 'Android',
+    platformMac: 'Mac',
+    platformWin: 'Windows',
+    footer: '© 2025 Próg Wiecznej Pętli'
+  }
+}
+
+const t = texts[lang]
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.title}</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+
+    <div class="lang-switch">
+      <a href="?lang=pl">PL</a>
+      <a href="?lang=en">EN</a>
+      <a href="?lang=uk">UA</a>
+      <a href="?lang=ru">RU</a>
+    </div>
+
+    <h1>{t.mainHeading}</h1>
+    <p>{t.mainText}</p>
+
+    <div class="top-buttons">
+      <a href="/authors?lang={lang}" class="nav-btn">{t.authorsHeading}</a>
+      <button id="download-btn" class="nav-btn">{t.downloadBtn}</button>
+    </div>
+
+    <div id="download-section" class="download-section">
+      <a class="download-btn" href="/assets/pledge_eternal_loop_android.zip" download>{t.platformAndroid}</a>
+      <a class="download-btn" href="/assets/pledge_eternal_loop_mac.zip" download>{t.platformMac}</a>
+      <a class="download-btn" href="/assets/pledge_eternal_loop_win.zip" download>{t.platformWin}</a>
+    </div>
+
+    <footer>{t.footer}</footer>
+
+    <script>
+      const downloadBtn = document.getElementById('download-btn');
+      const downloadSection = document.getElementById('download-section');
+      downloadBtn.addEventListener('click', () => {
+        downloadSection.classList.toggle('show');
+      });
+    </script>
+
+  </body>
+</html>
