@@ -1,76 +1,81 @@
 ---
-const lang = Astro.url.searchParams.get('lang') || 'ru'
+const lang = Astro.url.searchParams.get('lang') || 'ru';
 
 const texts = {
   ru: {
-    authorsHeading: 'Об авторах',
-    backBtn: 'Назад',
-    footer: '© 2025 Предел Петляной Вечности',
-    authorsText: [
+    heading: 'Об авторах',
+    back: 'Назад',
+    footer: '© 2025 Предел петляной вечности',
+    authors: [
       { label: 'Идея', value: 'Colubmina' },
       { label: 'Программист', value: 'Ravix' },
       { label: 'Сюжет', value: 'Colubmina' },
       { label: 'Персонажи', value: 'Colubmina' }
     ]
   },
-  en: {
-    authorsHeading: 'About Authors',
-    backBtn: 'Back',
-    footer: '© 2025 Pledge of the Eternal Loop',
-    authorsText: [
-      { label: 'Idea', value: 'Colubmina' },
-      { label: 'Programmer', value: 'Ravix' },
-      { label: 'Plot', value: 'Colubmina' },
-      { label: 'Characters', value: 'Colubmina' }
-    ]
-  },
   uk: {
-    authorsHeading: 'Про авторів',
-    backBtn: 'Назад',
-    footer: '© 2025 Предел Петляної Вічності',
-    authorsText: [
+    heading: 'Про авторів',
+    back: 'Назад',
+    footer: '© 2025 Предел петляной вечності',
+    authors: [
       { label: 'Ідея', value: 'Colubmina' },
       { label: 'Програміст', value: 'Ravix' },
       { label: 'Сюжет', value: 'Colubmina' },
       { label: 'Персонажі', value: 'Colubmina' }
     ]
   },
+  en: {
+    heading: 'About Authors',
+    back: 'Back',
+    footer: '© 2025 Pledge of the Eternal Loop',
+    authors: [
+      { label: 'Idea', value: 'Colubmina' },
+      { label: 'Programmer', value: 'Ravix' },
+      { label: 'Plot', value: 'Colubmina' },
+      { label: 'Characters', value: 'Colubmina' }
+    ]
+  },
   pl: {
-    authorsHeading: 'O autorach',
-    backBtn: 'Powrót',
-    footer: '© 2025 Próg Wiecznej Pętli',
-    authorsText: [
+    heading: 'O autorach',
+    back: 'Powrót',
+    footer: '© 2025 Przysięga Wiecznej Pętli',
+    authors: [
       { label: 'Pomysł', value: 'Colubmina' },
       { label: 'Programista', value: 'Ravix' },
       { label: 'Fabuła', value: 'Colubmina' },
       { label: 'Postacie', value: 'Colubmina' }
     ]
   }
-}
+};
 
-const t = texts[lang]
+const t = texts[lang];
 ---
 
 <html lang={lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{t.authorsHeading}</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <h1>{t.authorsHeading}</h1>
-
-    {t.authorsText.map((item, index) => (
-      <div class="card" style={`animation-delay:${0.2 * index}s`}>
-        <span class="label">{item.label}:</span>
-        <span class="value">{item.value}</span>
-      </div>
-    ))}
-
-    <a class="back-btn" href="/?lang={lang}">{t.backBtn}</a>
-
-    <footer>{t.footer}</footer>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{t.heading}</title>
+  <style>
+    body {margin:0;font-family:'EB Garamond', serif;background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:#fff;text-align:center;padding:40px;}
+    h1 {font-size:3rem;margin-bottom:40px;}
+    .card {background: rgba(255,255,255,0.05);border-radius:20px;padding:20px;margin:15px auto;max-width:400px;text-align:left;opacity:0;transform:translateY(20px);animation: fadeInUp 0.6s forwards;}
+    .label {font-weight:bold;color:#ff6a00;}
+    .value {margin-left:10px;}
+    .back-btn {display:inline-block;margin-top:40px;padding:12px 28px;font-size:18px;color:#fff;background: linear-gradient(135deg, rgba(255,106,0,0.8), rgba(255,140,66,0.8));border-radius:20px;text-decoration:none;transition:0.3s;}
+    .back-btn:hover {background: linear-gradient(135deg, rgba(255,140,66,0.9), rgba(255,180,80,0.9));transform:translateY(-5px) scale(1.05);}
+    footer {margin-top:50px;color:rgba(255,255,255,0.7);}
+    @keyframes fadeInUp {to{opacity:1;transform:translateY(0);}}
+  </style>
+</head>
+<body>
+  <h1>{t.heading}</h1>
+  {t.authors.map((a, i) => (
+    <div class="card" style={`animation-delay:${i*0.2}s`}>
+      <span class="label">{a.label}:</span> <span class="value">{a.value}</span>
+    </div>
+  ))}
+  <a class="back-btn" href={`/index.astro?lang=${lang}`}>{t.back}</a>
+  <footer>{t.footer}</footer>
+</body>
 </html>
-
